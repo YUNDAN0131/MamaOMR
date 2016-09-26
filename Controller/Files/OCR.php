@@ -18,12 +18,11 @@ require_once('Model/OCR/OCR.php');
  * @var 	$strDocImageFile doc이미지파일 path
  */
 $strImgType = $_POST['img_type'];
-$strDocImageUrl = $_POST['image'];
 $arrURLInfo = parse_url($_POST['image']);
 $arrFileInfo = pathinfo($arrURLInfo['path']);
 $arrVar = parse_str($arrURLInfo['query']);
 if($strImgType=="tmp"){
-	$strDocImageFile = TMP_DIR.DIRECTORY_SEPARATOR.$k;
+	$strDocImageFile = "/tmp".DIRECTORY_SEPARATOR.$k;
 }else{
 	//$strDocImageFile = QUESTION_IMAGE_DIR.DIRECTORY_SEPARATOR.
 }
@@ -41,7 +40,7 @@ $objOCR = new OCR();
  /**
  * Main Process
  */
-$strQuestion = $objOCR->convert($strDocImageFile,$strDocImageUrl);
+$strQuestion = $objOCR->convert($strDocImageFile);
 
 
 /**
